@@ -30,3 +30,5 @@ data <- world_shapes %>%
 data %>% 
   st_write(., "data/gi_ineq_data.gpkg",
            layer = 'world_diff_2010_2019')
+
+#funguje to aj po premenovani?

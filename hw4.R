@@ -5,7 +5,7 @@ library(stringr)
 library(usethis)
 
 # read in gender inequality data
-gi_data <- read_csv("data/gender_inequality.csv", 
+gi_data <- read_csv("data/input/gender_inequality.csv", 
                     skip=5,
                     na='..') %>%
   clean_names() %>%
@@ -19,7 +19,7 @@ ineq_diff_data <- gi_data %>%
   select(country, gi_ineq_diff)
 
 # load spatial data
-world_shapes <- st_read("data/countries/World_Countries__Generalized_.shp") %>% 
+world_shapes <- st_read("data/input/countries/World_Countries__Generalized_.shp") %>% 
   clean_names()
 
 # join inequality data
@@ -28,5 +28,7 @@ data <- world_shapes %>%
 
 # save data
 data %>% 
-  st_write(., "data/gi_ineq_data.gpkg",
+  st_write(., "data/output/gi_ineq_data.gpkg",
+           layer = 'world_diff_2010_2019',
+           delete_layer = TRUE)
 
